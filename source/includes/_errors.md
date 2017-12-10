@@ -2,14 +2,17 @@
 
 The Smart Backpacker API uses the following error codes:
 
+> All the errors have the following json form (API v2 only):
 
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request sucks.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- Only authorized requests with the provided API Token.
-404 | Not Found -- The specified resource could not be found.
-405 | Method Not Allowed -- Invalid HTTP method.
-406 | Not Acceptable -- You requested a format that isn't json.
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+```json
+{
+  "error": 100
+  "value": "Country not found: Mars"
+}
+```
+
+Code | Meaning
+---- | -------
+100 | Country not found.
+101 | Airline not found
+666 | Forbidden -- Only authorized requests with the provided API Token.

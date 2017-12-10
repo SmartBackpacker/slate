@@ -40,7 +40,7 @@ curl "https://api.smartbackpackerapp.com/v1/airlines?name=Air France"
 
 ### HTTP Request
 
-`GET https://api.smartbackpacker.com/v1/airlines`
+`GET /v1/airlines`
 
 ### Query Parameters
 
@@ -48,17 +48,26 @@ Parameter | Description
 --------- | ------- | -----------
 name | The exact name of the airline, case sensitive.
 
+### HTTP Response
+
+Code | Description
+---- | ----------
+200 | Success
+404 | Airline not found
+500 | Internal Server Error
+503 | Service Unavailable
+
 ### Response
 
-* name: The airline's name
-* baggagePolicy
-  - allowance: a list of baggage allowance
-    - baggageType: any of SmallBag, CabinBag or CheckedBag
-    - kgs: an integer number
-    - size: 
-      - height: an integer number
-      - width: an integer number
-      - depth: an integer number
+* **name**: The airline's name
+* **baggagePolicy**
+  - **allowance**: a list of baggage allowance
+    - **baggageType**: any of `SmallBag`, `CabinBag` or `CheckedBag`
+    - **kgs**: an integer number
+    - **size**: 
+      - **height**: an integer number
+      - **width**: an integer number
+      - **depth**: an integer number
 
-<aside class="warning">The field kgs could be null.</aside>
+<aside class="warning">The field <b>kgs</b> could be null.</aside>
 
