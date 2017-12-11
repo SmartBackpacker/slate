@@ -222,6 +222,17 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#environments" class="toc-h1 toc-link" data-title="Environments">Environments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#production" class="toc-h2 toc-link" data-title="Production">Production</a>
+                  </li>
+                  <li>
+                    <a href="#development" class="toc-h2 toc-link" data-title="Development">Development</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
@@ -232,6 +243,9 @@
                   </li>
                   <li>
                     <a href="#query-parameters" class="toc-h2 toc-link" data-title="Query Parameters">Query Parameters</a>
+                  </li>
+                  <li>
+                    <a href="#http-response" class="toc-h2 toc-link" data-title="HTTP Response">HTTP Response</a>
                   </li>
                   <li>
                     <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
@@ -251,6 +265,9 @@
                     <a href="#query-parameters" class="toc-h2 toc-link" data-title="Query Parameters">Query Parameters</a>
                   </li>
                   <li>
+                    <a href="#http-response" class="toc-h2 toc-link" data-title="HTTP Response">HTTP Response</a>
+                  </li>
+                  <li>
                     <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
                   </li>
               </ul>
@@ -260,6 +277,9 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#http-response" class="toc-h2 toc-link" data-title="HTTP Response">HTTP Response</a>
                   </li>
                   <li>
                     <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
@@ -281,17 +301,25 @@
 <p>Welcome to the Smart Backpacker API! </p>
 
 <p>Easily find Visa Requirements, Currency Exchange, Airline&#39;s Baggage Policy and your Passport Ranking among others.</p>
+<h1 id='environments'>Environments</h1><h3 id='production'>Production</h3>
+<p><a href="https://api.smartbackpackerapp.com/">https://api.smartbackpackerapp.com/</a></p>
+<h3 id='development'>Development</h3>
+<p><a href="https://smart-backpacker.herokuapp.com/">https://smart-backpacker.herokuapp.com/</a></p>
+
+<aside class="success">
+Both environments work only over <b>TLS</b> / <b>SSL</b> (https). Make sure you have the right public certificate.
+</aside>
 <h1 id='authentication'>Authentication</h1>
-<p>All the endpoints require a Bearer JWT Authorization token in the headers, so make sure you execute a request with the following header:</p>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api-endpoint-here/"</span> -H <span class="s2">"Authorization: Bearer &lt;your_access_token&gt;"</span>
+<p>All the endpoints require a Bearer JWT Authorization token in the headers, so make sure you have it when performing a request. It should follow the form:</p>
+
+<p><code>Authorization: Bearer &lt;your_access_token&gt;</code></p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.smartbackpackerapp.com/v1/endpoint/"</span> -H <span class="s2">"Authorization: Bearer &lt;your_access_token&gt;"</span>
 </code></pre>
 <aside class="notice">
 You must replace <code>&lt;your_access_token&gt;</code> with your API key.
 </aside>
 <h1 id='visa-requirements'>Visa Requirements</h1>
 <p>Where you can find out Visa Requirements and Currency Exchange information given a country code <code>from</code> and a country code <code>to</code>.</p>
-
-<p>Country code follows the <code>Alpha-2 code</code> form specified by <a href="https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1</a>.</p>
 
 <blockquote>
 <p>Json response for traveling from AR (Argentina) to AU (Australia):</p>
@@ -311,11 +339,11 @@ You must replace <code>&lt;your_access_token&gt;</code> with your API key.
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<aside class="success">
-Remember — it should be an authenticated request using your API Key!
+<aside class="notice">
+Country code follows the <b>Alpha-2 code</b> form specified by <a href="https://en.wikipedia.org/wiki/ISO_3166-1" target="_blank">ISO 3166-1</a>.
 </aside>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.smartbackpacker.com/v1/traveling/{from}/to/{to}</code></p>
+<p><code>GET /v1/traveling/{from}/to/{to}</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -325,25 +353,57 @@ Remember — it should be an authenticated request using your API Key!
 </thead><tbody>
 <tr>
 <td>baseCurrency</td>
-<td>The base currency to get information about currency exchange. Must follow the <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> form.</td>
+<td>Currency code to get information about currency exchange</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Currency code should be as defined by <a href="https://en.wikipedia.org/wiki/ISO_4217" target="_blank">ISO 4217</a>.
+</aside>
+<h3 id='http-response'>HTTP Response</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Whenever <code>to</code> and <code>from</code> are the same country</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Country not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
 </tr>
 </tbody></table>
 <h3 id='response'>Response</h3>
 <ul>
-<li>countryName: the name of the <code>to</code> country</li>
-<li>countryCode: the ISO country code of the <code>to</code> country</li>
-<li>visaRequirements
+<li><strong>countryName</strong>: the name of the <code>to</code> country</li>
+<li><strong>countryCode</strong>: the ISO country code of the <code>to</code> country</li>
+<li><strong>visaRequirements</strong>:
 
 <ul>
-<li>visaCategory: any of the categories defined below</li>
-<li>description: a string value</li>
+<li><strong>visaCategory</strong>: any of the categories defined below</li>
+<li><strong>description</strong>: a string value</li>
 </ul></li>
-<li>exchangeRate:
+<li><strong>exchangeRate</strong>:
 
 <ul>
-<li>baseCurrency: the currency set in the request</li>
-<li>foreignCurrency: the currency of the <code>to</code> country</li>
-<li>rate: a floating point number indicating the exchaange rate</li>
+<li><strong>baseCurrency</strong>: the currency set in the request (ISO 4217)</li>
+<li><strong>foreignCurrency</strong>: the currency of the <code>to</code> country</li>
+<li><strong>rate</strong>: a floating point number indicating the exchange rate</li>
 </ul></li>
 </ul>
 <h3 id='visa-category'>Visa Category</h3>
@@ -400,7 +460,7 @@ Remember — it should be an authenticated request using your API Key!
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.smartbackpacker.com/v1/airlines</code></p>
+<p><code>GET /v1/airlines</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -413,26 +473,50 @@ Remember — it should be an authenticated request using your API Key!
 <td>The exact name of the airline, case sensitive.</td>
 </tr>
 </tbody></table>
+<h3 id='http-response'>HTTP Response</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Airline not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+</tbody></table>
 <h3 id='response'>Response</h3>
 <ul>
-<li>name: The airline&#39;s name</li>
-<li>baggagePolicy
+<li><strong>name</strong>: The airline&#39;s name</li>
+<li><strong>baggagePolicy</strong>
 
 <ul>
-<li>allowance: a list of baggage allowance</li>
-<li>baggageType: any of SmallBag, CabinBag or CheckedBag</li>
-<li>kgs: an integer number</li>
-<li>size: 
+<li><strong>allowance</strong>: a list of baggage allowance</li>
+<li><strong>baggageType</strong>: any of <code>SmallBag</code>, <code>CabinBag</code> or <code>CheckedBag</code></li>
+<li><strong>kgs</strong>: an integer number</li>
+<li><strong>size</strong>: 
 
 <ul>
-<li>height: an integer number</li>
-<li>width: an integer number</li>
-<li>depth: an integer number</li>
+<li><strong>height</strong>: an integer number</li>
+<li><strong>width</strong>: an integer number</li>
+<li><strong>depth</strong>: an integer number</li>
 </ul></li>
 </ul></li>
 </ul>
 
-<aside class="warning">The field kgs could be null.</aside>
+<aside class="warning">The field <b>kgs</b> could be null.</aside>
 <h1 id='visa-restrictions-index'>Visa Restrictions Index</h1>
 <p>Where you can find out the passport ranking based on the <a href="https://en.wikipedia.org/wiki/Henley_%26_Partners_Visa_Restrictions_Index">Henley &amp; Partners Visa Restrictions Index 2017</a>.</p>
 
@@ -445,53 +529,65 @@ Remember — it should be an authenticated request using your API Key!
   </span><span class="s2">"sharing"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.smartbackpacker.com/v1/ranking/{country_code}</code></p>
+<p><code>GET /v1/ranking/{country_code}</code></p>
+
+<aside class="notice">
+Country code follows the <b>Alpha-2 code</b> form specified by <a href="https://en.wikipedia.org/wiki/ISO_3166-1" target="_blank">ISO 3166-1</a>.
+</aside>
+<h3 id='http-response'>HTTP Response</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Country not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+</tbody></table>
 <h3 id='response'>Response</h3>
 <ul>
-<li>rank: passport ranking</li>
-<li>count: amount of countries allowes to enter</li>
-<li>sharing: if the ranking position is shared with other countries, then here&#39;s how many of them, otherwise just zero</li>
+<li><strong>rank</strong>: passport ranking</li>
+<li><strong>count</strong>: number of countries allowed to enter</li>
+<li><strong>sharing</strong>: number of countries that share the same ranking position</li>
 </ul>
 <h1 id='errors'>Errors</h1>
 <p>The Smart Backpacker API uses the following error codes:</p>
 
+<blockquote>
+<p>All the errors have the following json form:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Country not found: Mars"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <table><thead>
 <tr>
-<th>Error Code</th>
+<th>Code</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request sucks.</td>
+<td>100</td>
+<td>Entity not found (Country, Airline, etc).</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- Only authorized requests with the provided API Token.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified resource could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- Invalid HTTP method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>101</td>
+<td>Cannot search traveling to the same country.</td>
 </tr>
 </tbody></table>
 
