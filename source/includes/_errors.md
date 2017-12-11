@@ -2,17 +2,16 @@
 
 The Smart Backpacker API uses the following error codes:
 
-> All the errors have the following json form (API v2 only):
+> All the errors have the following json form:
 
 ```json
 {
-  "error": 100
-  "value": "Country not found: Mars"
+  "code": 100
+  "error": "Country not found: Mars"
 }
 ```
 
 Code | Meaning
 ---- | -------
-100 | Country not found.
-101 | Airline not found
-666 | Forbidden -- Only authorized requests with the provided API Token.
+100 | Entity not found (Country, Airline, etc).
+101 | Cannot search traveling to the same country.
