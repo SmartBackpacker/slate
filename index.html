@@ -287,6 +287,23 @@
               </ul>
           </li>
           <li>
+            <a href="#health-information" class="toc-h1 toc-link" data-title="Health Information">Health Information</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#http-response" class="toc-h2 toc-link" data-title="HTTP Response">HTTP Response</a>
+                  </li>
+                  <li>
+                    <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+                  <li>
+                    <a href="#disease-category" class="toc-h2 toc-link" data-title="Disease Category">Disease Category</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </div>
@@ -563,6 +580,139 @@ Country code follows the <b>Alpha-2 code</b> form specified by <a href="https://
 <li><strong>rank</strong>: passport ranking</li>
 <li><strong>count</strong>: number of countries allowed to enter</li>
 <li><strong>sharing</strong>: number of countries that share the same ranking position</li>
+</ul>
+<h1 id='health-information'>Health Information</h1>
+<p>Where you can find out information about mandatory, recommended and optional vaccines, in addition to health travel alerts provided by <a href="https://www.cdc.gov/">CDC (Centers for Disease Control and Prevention)</a>.</p>
+
+<blockquote>
+<p>Json response for AR (Argentina):</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"vaccinations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"mandatory"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"recommendations"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"disease"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hepatitis A"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CDC recommends this vaccine because you can get hepatitis A through contaminated food or water in Argentina, regardless of where you are eating or staying."</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"diseaseCategories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"GetVaccinated"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"EatAndDrinkSafely"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"disease"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Typhoid"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You can get typhoid through contaminated food or water in Argentina. CDC recommends this vaccine for most travelers, especially if you are staying with friends or relatives, visiting smaller cities or rural areas, or if you are an adventurous eater."</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"diseaseCategories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"GetVaccinated"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"EatAndDrinkSafely"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"optional"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"disease"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hepatitis B"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You can get hepatitis B through sexual contact, contaminated needles, and blood products, so CDC recommends this vaccine if you might have sex with a new partner, get a tattoo or piercing, or have any medical procedures."</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"diseaseCategories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"GetVaccinated"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"AvoidSharingBodyFluids"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"AvoidNonSterileEquipment"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"disease"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rabies"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Although rabies can be found in dogs, bats, and other mammals in Argentina, it is not a major risk to most travelers. CDC recommends this vaccine only for these groups: Travelers involved in outdoor and other activities in remote areas that put them at risk for animal bites (such as adventure travel and caving). People who will be working with or around animals (such as veterinarians, wildlife professionals, and researchers). People who are taking long trips or moving to remote areas in Argentina Children, because they tend to play with animals, might not report bites, and are more likely to have animal bites on their head and neck."</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"diseaseCategories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"GetVaccinated"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"KeepAwayFromAnimals"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"disease"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yellow Fever"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yellow fever is a risk in certain parts of Argentina, so CDC recommends the yellow fever vaccine for travelers 9 months of age or older to these areas. For more information on this recommendation, see yellow fever recommendations and requirements for Argentina.Your doctor can help you decide if this vaccine is right for you based on your travel plans."</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"diseaseCategories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"GetVaccinated"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"PreventBugBites"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"notices"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"alertLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LevelTwo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"alerts"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zika Virus in Argentina"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zika virus (or Zika) has been reported. Public health officials have reported that mosquitoes are infected with Zika and spreading it to people."</span><span class="w">
+        </span><span class="p">}],</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /v1/health/{country_code}</code></p>
+
+<aside class="notice">
+Country code follows the <b>Alpha-2 code</b> form specified by <a href="https://en.wikipedia.org/wiki/ISO_3166-1" target="_blank">ISO 3166-1</a>.
+</aside>
+<h3 id='http-response'>HTTP Response</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Country not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<ul>
+<li><strong>vaccinations</strong>:
+
+<ul>
+<li><strong>mandatory</strong>: a list of the required vaccines to travel to the destination country</li>
+<li><strong>recommendations</strong>: a list of the recommended vaccines</li>
+<li><strong>optional</strong>: a list of the optional vaccines depending on the situation of the traveler</li>
+</ul></li>
+<li><p><strong>notices</strong>: </p>
+
+<ul>
+<li><strong>alertLevel</strong>: either NoAlert, LevelOne or LevelTwo. Level 1 indicates <code>Practice Usual Precautions</code> (green warning) and Level 2 <code>Practice Enhanced Precautions</code> (yellow warning).</li>
+<li><strong>alerts</strong>: a list of alerts
+
+<ul>
+<li><strong>title</strong>: title of the alert</li>
+<li><strong>link</strong>: website link of the alert</li>
+<li><strong>description</strong>: the description</li>
+</ul></li>
+</ul></li>
+<li><p><strong>vaccine</strong> format:</p>
+
+<ul>
+<li><strong>disease</strong>: the disease name</li>
+<li><strong>description</strong>: the description</li>
+<li><strong>diseaseCategories</strong>: any of the disease categories</li>
+</ul></li>
+</ul>
+<h3 id='disease-category'>Disease Category</h3>
+<ul>
+<li>AvoidNonSterileEquipment</li>
+<li>TakeAntimalarialMeds</li>
+<li>GetVaccinated</li>
+<li>AvoidSharingBodyFluids</li>
+<li>ReduceExposureToGerms </li>
+<li>PreventBugBites </li>
+<li>EatAndDrinkSafely </li>
+<li>KeepAwayFromAnimals </li>
+<li>UnknownDiseaseCategory</li>
 </ul>
 <h1 id='errors'>Errors</h1>
 <p>The Smart Backpacker API uses the following error codes:</p>
