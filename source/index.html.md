@@ -11,6 +11,7 @@ includes:
   - visa_requirements
   - baggage_policy
   - ranking
+  - health
   - errors
 
 search: true
