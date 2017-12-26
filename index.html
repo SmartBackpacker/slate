@@ -236,6 +236,23 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
+            <a href="#countries" class="toc-h1 toc-link" data-title="Countries">Countries</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#optional-query-parameters" class="toc-h2 toc-link" data-title="Optional Query Parameters">Optional Query Parameters</a>
+                  </li>
+                  <li>
+                    <a href="#http-response" class="toc-h2 toc-link" data-title="HTTP Response">HTTP Response</a>
+                  </li>
+                  <li>
+                    <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#visa-requirements" class="toc-h1 toc-link" data-title="Visa Requirements">Visa Requirements</a>
               <ul class="toc-list-h2">
                   <li>
@@ -335,6 +352,79 @@ Both environments work only over <b>TLS</b> / <b>SSL</b> (https). Make sure you 
 <aside class="notice">
 You must replace <code>&lt;your_access_token&gt;</code> with your API key.
 </aside>
+<h1 id='countries'>Countries</h1>
+<p>List of all the countries in the world including <code>Country Code</code>, <code>Name</code> and <code>Currency</code>. You can also filter by <code>Schengen</code> countries.</p>
+
+<blockquote>
+<p>Json response for all the countries (200):</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.smartbackpackerapp.com/v1/countries"</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Argentina,
+    "</span><span class="err">currency</span><span class="s2">": "</span><span class="err">ARS</span><span class="s2">"
+  },
+  {
+    "</span><span class="err">code</span><span class="s2">": "</span><span class="err">IE</span><span class="s2">",
+    "</span><span class="err">name</span><span class="s2">": "</span><span class="err">Ireland</span><span class="s2">",
+    "</span><span class="err">currency</span><span class="s2">": "</span><span class="err">EUR</span><span class="s2">"
+  }
+]
+</span></code></pre>
+<blockquote>
+<p>Json response for the Schengen countries (26):</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.smartbackpackerapp.com/v1/countries?query=schengen"</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Austria"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /v1/countries</code></p>
+<h3 id='optional-query-parameters'>Optional Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>query</td>
+<td>schengen</td>
+<td>Retrieves only the countries that belong to the Schengen Area</td>
+</tr>
+</tbody></table>
+<h3 id='http-response'>HTTP Response</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<ul>
+<li><strong>code</strong>: Alpha-2 Country Code <a href="https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1Alpha</a></li>
+<li><strong>name</strong>: Country Name</li>
+<li><strong>currency</strong>: Country Currency <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a></li>
+</ul>
 <h1 id='visa-requirements'>Visa Requirements</h1>
 <p>Where you can find out Visa Requirements and Currency Exchange information given a country code <code>from</code> and a country code <code>to</code>.</p>
 
