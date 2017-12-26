@@ -12,7 +12,7 @@ curl "https://api.smartbackpackerapp.com/v1/countries"
 [
   {
     "code": "AR",
-    "name": "Argentina,
+    "name": "Argentina",
     "currency": "ARS"
   },
   {
