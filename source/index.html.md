@@ -8,6 +8,7 @@ toc_footers:
   - <a href='http://smartbackpackerapp.com/'>Download the App now!</a>
 
 includes:
+  - countries
   - visa_requirements
   - baggage_policy
   - ranking
